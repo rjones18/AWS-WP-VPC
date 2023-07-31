@@ -22,7 +22,7 @@ jobs:
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        args: iac test . # Point to your Terraform scripts here
+        args: iac test vpc.tf provider.tf
 
     - name: Setup AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
