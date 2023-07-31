@@ -16,6 +16,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/terraform@0.3.0
+      with:
+        command: iac test
+        args: . # You can point to your Terraform scripts here
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     - name: Setup AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -36,4 +44,5 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
+
 
